@@ -6,7 +6,7 @@ from newspaper import Article
 import pandas as pd
 from newspaper import Config
 import nltk
-import sentiment_analysis as sa
+#import sentiment_analysis as sa
 #nltk.download('punkt')
 name = 'narendra modi'
 start_date = '06-28-2023'
