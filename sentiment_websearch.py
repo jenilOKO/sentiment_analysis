@@ -8,7 +8,9 @@ from newspaper import Config
 import nltk
 import sentiment_analysis as sa
 #nltk.download('punkt')
-
+name = 'narendra modi'
+start_date = '06-28-2023'
+end_date = '06-28-2023'
 def search(name, start_date, end_date):
     user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'
     config = Config()
@@ -42,9 +44,9 @@ def search(name, start_date, end_date):
             dict['Article']=article.text
             dict['Links']=df['link'][ind]
             dict['Summary']=article.summary
-            Sentiment = sa.sentiment_score(dict['Summary'])
-            print(Sentiment)
-            dict['Sentiment'] = Sentiment
+            #Sentiment = sa.sentiment_score(dict['Summary'])
+            #print(Sentiment)
+            #dict['Sentiment'] = Sentiment
             list1.append(dict)
             count += 1
             print('added count: ', count)
@@ -55,22 +57,24 @@ def search(name, start_date, end_date):
             continue
         if count > 5:
             news_df=pd.DataFrame(list1)
-            news_df.to_excel("C:/Users/JENILPATEL/Desktop/sentiment/data/" +name+ "_final.xlsx")
+            #news_df.to_excel("C:/Users/JENILPATEL/Desktop/sentiment/data/" +name+ "_final.xlsx")
             left_links = left_links.split(',/n')
             print(left_links)
-            with open(r'C:/Users/JENILPATEL/Desktop/sentiment/data/'+name+'_left_links_final.txt', 'w') as fp:
-                for item in left_links:
-                    fp.write("%s\n" % item)
-                print('Done')
+            #with open(r'C:/Users/JENILPATEL/Desktop/sentiment/data/'+name+'_left_links_final.txt', 'w') as fp:
+                #for item in left_links:
+                    #fp.write("%s\n" % item)
+            print('Done')
             break
     if count < 5:
         news_df=pd.DataFrame(list1)
-        news_df.to_excel("C:/Users/JENILPATEL/Desktop/sentiment/data/" +name+ "_final.xlsx")
+        #news_df.to_excel("C:/Users/JENILPATEL/Desktop/sentiment/data/" +name+ "_final.xlsx")
         left_links = left_links.split(',/n')
         print(left_links)
 
-        with open(r'C:/Users/JENILPATEL/Desktop/sentiment/data/'+name+'_left_links.txt', 'w') as fp:
-            for item in left_links:
-                fp.write("%s\n" % item)
-            print('Done')
+        #with open(r'C:/Users/JENILPATEL/Desktop/sentiment/data/'+name+'_left_links.txt', 'w') as fp:
+            #for item in left_links:
+                #fp.write("%s\n" % item)
+        print('Done')
+    print(news_df)
     return news_df
+search(name, start_date, end_date)
